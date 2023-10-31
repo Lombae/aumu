@@ -48,7 +48,7 @@ def roll_timer_check():
         config["rolls"] = config["rolls"] - 1
         print("\nRolls left: ")
         print(config["rolls"])
-        time.sleep(2.5)
+        time.sleep(2)
         return "true"
     if((time.time() - int(time_on_roll) ) > config["rollsTime"]):
         print("\nRolls reset!\n")
@@ -83,7 +83,7 @@ async def on_message(message):
                     pass #Kakera found
 
                 for index, item in enumerate(pgs):
-                    if title == item and kakera == 0: 
+                    if title == item and kakera == 0 or config["rolls"] > 1: 
                         fails = 0
                         #print(f"\n\nClaiming {title}\n Description: {str(message.embeds[0].description)}\n in {message.channel.guild.name}")
                         while True:
@@ -113,6 +113,7 @@ async def on_message(message):
                 pass #Title not found
 
     if(roll_timer_check() == "true"):
+        await time.sleep(3)
         await channel.send('$wa')     
 
 bot.run(config["token"])
