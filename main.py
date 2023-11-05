@@ -112,7 +112,7 @@ async def on_message(message):
                 pass #Title not found
 
     if(roll_timer_check() == "true"):
-        await time.sleep(10)
-        await channel.send('$wa')     
+        await channel.send('$wa')
+        time.sleep(10)
 
 bot.run(config["token"])
