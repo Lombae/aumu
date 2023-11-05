@@ -48,7 +48,6 @@ def roll_timer_check():
         config["rolls"] = config["rolls"] - 1
         print("\nRolls left: ")
         print(config["rolls"])
-        time.sleep(2)
         return "true"
     if((time.time() - int(time_on_roll) ) > config["rollsTime"]):
         print("\nRolls reset!\n")
@@ -113,7 +112,7 @@ async def on_message(message):
                 pass #Title not found
 
     if(roll_timer_check() == "true"):
-        await time.sleep(3)
+        await time.sleep(10)
         await channel.send('$wa')     
 
 bot.run(config["token"])
